@@ -259,24 +259,15 @@ setup_ufw() {
     echo ""
     echo "--- UFW Firewall Setup ---"
 
-    if systemctl is-active --quiet firewalld.service || systemctl is-enabled --quiet firewalld.service; then
-        if ! systemctl disable --now firewalld.service; then
-            echo "${RED}ERROR: Failed to disable firewalld.service.${ALL_OFF}" >&2
-            return 1
-        fi
-    fi
-
     if ! ufw default deny incoming >/dev/null ||
        ! ufw default allow outgoing >/dev/null ||
-       ! ufw allow 53317/tcp >/dev/null ||
-       ! ufw allow 53317/udp >/dev/null ||
        ! ufw --force enable >/dev/null ||
        ! systemctl enable --now ufw.service >/dev/null; then
         echo "${RED}ERROR: UFW setup failed.${ALL_OFF}" >&2
         return 1
     fi
 
-    echo "UFW enabled: incoming denied, outgoing allowed, LocalSend 53317/tcp and 53317/udp allowed."
+    echo "UFW enabled: incoming denied and outgoing allowed."
 }
 
 if ! setup_ufw; then
