@@ -249,10 +249,10 @@ fi
 echo ""
 echo "--- AccountsService Setup ---"
 
-if systemctl enable accounts-daemon; then
-    echo "accounts-daemon service enabled."
+if systemctl enable accounts-daemon.service; then
+    echo "AccountsService enabled."
 else
-    echo "${RED}Warning: Failed to enable accounts-daemon.service.${ALL_OFF}"
+    echo "${YELLOW}Warning: Failed to enable accounts-daemon.service.${ALL_OFF}"
 fi
 
 setup_ufw() {
