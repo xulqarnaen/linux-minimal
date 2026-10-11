@@ -1,47 +1,30 @@
 # linux-minimal
 
-A minimal Linux desktop setup built around **Hyprland**, with reproducible installation scripts for **Arch Linux** and **Fedora**.
+Minimal Hyprland desktop setup for **Arch Linux** and **Fedora**, with Noctalia, UWSM, greetd, and a curated set of Wayland applications.
 
-The goal is simple: start from a relatively bare system and get to a lightweight, functional Wayland desktop without dragging along a full desktop environment or a pile of unnecessary software.
+## Components
 
-## Features
+| Area | Software |
+|---|---|
+| Desktop | Hyprland, Noctalia, UWSM |
+| Login | greetd, Noctalia Greeter |
+| Shell and terminal | Fish, Foot, Starship |
+| Browser and files | Brave Origin, Nautilus |
+| Editor and media | Neovim, mpv, imv, Evince |
+| Capture and clipboard | GPU Screen Recorder, wl-clip-persist |
+| Font | JetBrains Mono Nerd Font |
+| Firewall | UFW |
 
-- 🪟 **Hyprland** — Wayland compositor
-- 🎨 **Noctalia** — desktop shell and theming
-- 🔐 **greetd + Noctalia Greeter** — graphical login
-- 🚀 **UWSM** — Wayland session management
-- 🐟 **Fish** — interactive shell
-- 🦶 **Foot** — terminal emulator
-- 📝 **Neovim** — editor
-- 🌐 **Brave Origin** — web browser
-- 📁 **Nautilus** — file manager
-- 🎵 **mpv** — media playback 
-- 📸 **GPU Screen Recorder** — screen recording
-- 🔤 **JetBrains Mono Nerd Font**
-- 🖼️ **imv** — image viewer
-- 📄 **Evince** — PDF viewer
-- 🔒 **UFW** — firewall
-- 📋 **wl-clip-persist** — Wayland clipboard persistence
-- ⭐ **Starship** — shell prompt
+## Prerequisites
 
-The configuration also includes Hyprland rules, keybindings, Noctalia configuration, wallpapers, and user-local utilities.
-
-## Supported Systems
-
-| Distribution | Installer | Status |
-|---|---|---|
-| Arch Linux | `arch.sh` | Supported |
-| Fedora Linux | `fedora.sh` | Supported |
-
-The scripts are intended only for **fresh Archinstall installations** and **minimal Fedora installations**. They are not general-purpose migration tools and are not designed to repair or preserve an existing desktop setup.
-
-Both scripts require a working internet connection, a normal non-root user account, and the repository checked out locally. Run them from the repository root using `sudo`. They deliberately do not create backups: tracked configuration files with matching names in the target home directory may be overwritten.
-
-## Installation
+Both installers require internet access, a normal user account with `sudo` access, and this repository cloned locally. Run the relevant script from the repository root. These scripts target fresh installations, do not back up existing configuration, and may overwrite matching files.
 
 ### Arch Linux
 
-Install a minimal Arch system first, then clone this repository:
+1. Install Arch using **Archinstall** with the **Minimal** profile.
+2. Configure a normal user and working network access.
+3. Select the system components you want Archinstall to configure. This setup assumes NetworkManager, Bluetooth (BlueZ), PipeWire, power management, UFW, a kernel, firmware, a bootloader, zram, and NTP are configured during installation.
+4. After booting into the installed system, clone this repository and run:
 
 ```bash
 git clone https://github.com/xulqarnaen/linux-minimal.git
@@ -49,13 +32,35 @@ cd linux-minimal
 sudo bash ./arch.sh
 ```
 
-The Arch installer uses `pacman` for official packages and an AUR helper for packages that are not available in the official repositories.
+The script handles the desktop setup and installs `base-devel` and `git` as needed for its AUR bootstrap. It configures UFW rules but does not enable UFW; enablement is expected to be handled by the Archinstall setup.
 
-**Archinstall prerequisites:** complete a minimal Archinstall first, with a normal user account and the networking/system base you intend to keep. The installer assumes Archinstall has already configured NetworkManager, BlueZ, PipeWire, power management, UFW, the kernel, firmware, bootloader, zram, and time synchronization. It does not reinstall those items. The AUR bootstrap requires `base-devel` and `git`, which the script installs if needed. Make sure the system can access the internet and that `git` is available to clone the repository.
+#### Example Archinstall configuration
 
-### Fedora Linux
+This is the author's configuration as an example, not a requirement to copy every setting.
 
-Install a minimal Fedora system first, then:
+| Archinstall option | Example value |
+|---|---|
+| Profile | Minimal |
+| Network | NetworkManager (default backend) |
+| Kernel | `linux` |
+| Bootloader | systemd-boot |
+| Timezone | `Asia/Kolkata` |
+| NTP | Enabled |
+| Pacman | Color enabled |
+| zram | Enabled, `zstd` |
+| Bluetooth | Enabled |
+| Audio | PipeWire |
+| Power management | `power-profiles-daemon` |
+| Firewall | UFW |
+| Authentication | Root password set; one regular user configured |
+| Disk layout | Archinstall default layout on the selected target drive |
+
+### Fedora
+
+1. Boot the **Fedora Everything netinstall ISO**.
+2. During installation, select **only the networking options**; leave the desktop and other software selection to the script.
+3. Create a normal user with `sudo` access and ensure the installed system has working internet access.
+4. Clone this repository and run:
 
 ```bash
 git clone https://github.com/xulqarnaen/linux-minimal.git
@@ -63,126 +68,34 @@ cd linux-minimal
 sudo bash ./fedora.sh
 ```
 
-The Fedora installer uses `dnf` and configures the additional repositories required by the setup. It installs its required desktop packages and UFW itself.
+The Fedora script uses DNF and configures the additional repositories and packages it needs, including UFW.
 
-**Fedora prerequisites:** start from a minimal Fedora installation with a working DNF environment, systemd, internet access, a normal user account with `sudo` access, and `git` available to clone the repository. The script is intended to be run from that user's session via `sudo`, not from a root login with no target user.
+## What the scripts configure
 
-Both installers perform environment checks before making changes and require the repository to contain the expected configuration tree.
+- Install the required packages and repositories.
+- Set up Hyprland, Wayland portals, audio, Bluetooth, power management, greetd, Noctalia Greeter, and UWSM as appropriate for the distribution.
+- Deploy `.config/` and `.local/` into the target user's home.
+- Update XDG user directories and deploy `Wallpapers/` to the user's Pictures directory (normally `~/Pictures/Wallpapers/`).
+- Set application defaults and install JetBrains Mono Nerd Font system-wide.
 
-## What the Installers Do
-
-The installers are deliberately more than package lists. They configure the system into a usable desktop environment.
-
-### System setup
-
-Depending on the distribution, the installer handles:
-
-- System package updates
-- Required repositories
-- Core desktop packages
-- Hyprland
-- Wayland portals
-- PipeWire audio
-- Bluetooth
-- Power management
-- Firewall configuration
-- greetd
-- Noctalia Greeter
-- UWSM
-
-### User configuration
-
-The repository's configuration is deployed into the user's home directory:
-
-```text
-~/.config/
-~/.local/
-```
-
-The installers also configure application defaults and other desktop integration where required. Wallpapers are deployed to `~/Pictures/Wallpapers/` after updating the user's XDG directory configuration.
-
-### Fonts
-
-The setup installs **JetBrains Mono Nerd Font** system-wide.
-
-## Repository Structure
+## Repository layout
 
 ```text
 linux-minimal/
-├── .config/          # Desktop and application configuration
-├── .local/bin/       # User-local scripts and utilities
-├── Wallpapers/       # Wallpapers deployed to ~/Pictures/Wallpapers/
-├── arch.sh           # Arch Linux installer
-├── fedora.sh         # Fedora Linux installer
+├── .config/       # Desktop and application configuration
+├── .local/bin/    # User scripts and utilities
+├── Wallpapers/    # Deployed to the user's Pictures directory
+├── arch.sh
+├── fedora.sh
 └── README.md
 ```
 
-## Design Philosophy
+## Notes
 
-This project is intentionally opinionated.
-
-It is **not** intended to provide every possible desktop application or configuration option. The point is to keep the base small while providing the components needed for a practical daily-driver Wayland desktop.
-
-The setup favors:
-
-- Minimal dependencies
-- Native packages
-- Wayland-first software
-- Explicit configuration
-- Simple shell scripts
-- Reproducible setup
-- No traditional desktop environment
-- No unnecessary services
-
-You should be able to read the script and understand what it is doing.
-
-## Important
-
-These scripts modify your system.
-
-They can:
-
-- Install and remove packages
-- Enable and disable services
-- Modify system configuration
-- Replace configuration files
-- Change the user's default shell
-- Configure the login manager
-- Configure firewall rules
-- Install system-wide fonts
-
-**Read the relevant installer before running it.**
-
-This project is best suited to a fresh installation where the configuration can be applied without conflicting with an existing desktop environment.
-
-## Customization
-
-The repository is intended to be forked and modified.
-
-Most user-facing configuration lives under:
-
-```text
-.config/
-.local/
-Wallpapers/
-```
-
-The installers can also be edited directly if you want to change the package set or system setup.
-
-For example, package lists are explicitly defined in the installer scripts rather than generated dynamically, making them easy to audit and modify.
-
-## Contributing
-
-There is no strict contribution framework yet.
-
-If you find a bug or have an improvement:
-
-1. Open an issue describing the problem.
-2. Include relevant command output or logs.
-3. If possible, submit a pull request with the fix.
-
-Keep changes focused and avoid adding dependencies unless they provide a clear benefit.
+- Read the relevant script before running it; it can install/remove packages, enable services, and change system configuration.
+- The scripts are intended for fresh installations, not migration or repair of an existing desktop.
+- Fork the repository to customize package lists, scripts, and dotfiles.
 
 ## License
 
-See the repository's license file for licensing information.
+See the repository's license file.
