@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Drive
+Comment=Drive
+Exec=webapp "https://drive.google.com/"
+Terminal=false
+Type=Application
+Icon=drive
+StartupNotify=true
+X-WebApp=true

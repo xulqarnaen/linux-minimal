@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Presentation
+Comment=Presentation
+Exec=webapp "https://docs.google.com/presentation/"
+Terminal=false
+Type=Application
+Icon=presentation
+StartupNotify=true
+X-WebApp=true

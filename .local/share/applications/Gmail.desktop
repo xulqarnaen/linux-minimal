@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Gmail
+Comment=Gmail
+Exec=webapp "https://mail.google.com/"
+Terminal=false
+Type=Application
+Icon=gmail
+StartupNotify=true
+X-WebApp=true

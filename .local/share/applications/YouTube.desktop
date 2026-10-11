@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=YouTube
+Comment=YouTube
+Exec=webapp "https://www.youtube.com/"
+Terminal=false
+Type=Application
+Icon=youtube
+StartupNotify=true
+X-WebApp=true

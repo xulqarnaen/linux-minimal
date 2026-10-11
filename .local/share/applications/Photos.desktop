@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Photos
+Comment=Photos
+Exec=webapp "https://photos.google.com/"
+Terminal=false
+Type=Application
+Icon=photos
+StartupNotify=true
+X-WebApp=true

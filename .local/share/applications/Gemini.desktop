@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Gemini
+Comment=Gemini
+Exec=webapp "https://gemini.google.com/"
+Terminal=false
+Type=Application
+Icon=gemini
+StartupNotify=true
+X-WebApp=true

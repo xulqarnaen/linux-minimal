@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Docs
+Comment=Docs
+Exec=webapp "https://docs.google.com/"
+Terminal=false
+Type=Application
+Icon=docs
+StartupNotify=true
+X-WebApp=true
