@@ -9,8 +9,8 @@ local tasks = "btop"
 hl.bind("SUPER + Return", hl.dsp.exec_cmd(terminal))
 hl.bind("SUPER + B", hl.dsp.exec_cmd(browser))
 hl.bind("SUPER + E", hl.dsp.exec_cmd(fileManager .. " --new-window"))
-hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd(programs.terminal .. " -e " .. tasks))
-hl.bind("SUPER + M", hl.dsp.exec_cmd(programs.terminal .. " -e youtui"))
+hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd(terminal .. " -e " .. tasks))
+hl.bind("SUPER + M", hl.dsp.exec_cmd(terminal .. " -e youtui"))
 
 -- Web Apps
 hl.bind("SUPER + A", hl.dsp.exec_cmd(webapp .. " https://chatgpt.com"))
