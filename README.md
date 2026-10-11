@@ -51,7 +51,7 @@ sudo bash ./arch.sh
 
 The Arch installer uses `pacman` for official packages and an AUR helper for packages that are not available in the official repositories.
 
-**Archinstall prerequisites:** complete a minimal Archinstall first, with a normal user account and the networking/system base you intend to keep. The installer assumes Archinstall has already configured NetworkManager, BlueZ, PipeWire, power management, UFW, the kernel, firmware, bootloader, zram, and time synchronization. It does not reinstall those items. Make sure the system can access the internet and that `git` is available to clone the repository.
+**Archinstall prerequisites:** complete a minimal Archinstall first, with a normal user account and the networking/system base you intend to keep. The installer assumes Archinstall has already configured NetworkManager, BlueZ, PipeWire, power management, UFW, the kernel, firmware, bootloader, zram, and time synchronization. It does not reinstall those items. The AUR bootstrap requires `base-devel` and `git`, which the script installs if needed. Make sure the system can access the internet and that `git` is available to clone the repository.
 
 ### Fedora Linux
 
