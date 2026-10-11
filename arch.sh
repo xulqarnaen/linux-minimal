@@ -593,17 +593,6 @@ if ! run_as_user xdg-mime default brave-origin.desktop \
     echo "${YELLOW}Warning: Failed to set Brave Origin as the default browser.${ALL_OFF}"
 fi
 
-XFCE_HELPERS="$CONFIG_DIR/xfce4/helpers.rc"
-mkdir -p "$(dirname "$XFCE_HELPERS")"
-touch "$XFCE_HELPERS"
-sed -i \
-    -e '/^TerminalEmulator=/d' \
-    -e '/^WebBrowser=/d' \
-    "$XFCE_HELPERS"
-printf '%s\n' \
-    'TerminalEmulator=foot' \
-    'WebBrowser=brave-origin' >> "$XFCE_HELPERS"
-
 if ! run_as_user xdg-user-dirs-update; then
     echo "${YELLOW}Warning: Failed to update user directories.${ALL_OFF}"
 fi
@@ -690,12 +679,6 @@ if ufw status | grep -q 'Status: active'; then
     echo "UFW: active"
 else
     echo "${YELLOW}Warning: UFW is not active.${ALL_OFF}"
-fi
-
-if grep -qx 'WIRELESS_REGDOM="IN"' /etc/conf.d/wireless-regdom; then
-    echo "Wireless regulatory domain config: IN"
-else
-    echo "${YELLOW}Warning: Wireless regulatory domain configuration is not set to IN.${ALL_OFF}"
 fi
 
 if [[ -f "/usr/local/share/fonts/JetBrainsMonoNerdFont/JetBrainsMonoNerdFont-Medium.ttf" ]]; then
