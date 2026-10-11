@@ -1,12 +1,15 @@
-local programs = require("programs")
-local ipc = programs.noctalia
-local webapp = programs.webapp
+local terminal = "foot"
+local fileManager = "nautilus"
+local browser = "brave-origin"
+local ipc = "noctalia msg "
+local webapp = "webapp"
+local tasks = "btop"
 
 -- Applications
-hl.bind("SUPER + Return", hl.dsp.exec_cmd(programs.terminal))
-hl.bind("SUPER + B", hl.dsp.exec_cmd(programs.browser))
-hl.bind("SUPER + E", hl.dsp.exec_cmd(programs.fileManager .. " --new-window"))
-hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd(programs.terminal .. " -e " .. programs.tasks))
+hl.bind("SUPER + Return", hl.dsp.exec_cmd(terminal))
+hl.bind("SUPER + B", hl.dsp.exec_cmd(browser))
+hl.bind("SUPER + E", hl.dsp.exec_cmd(fileManager .. " --new-window"))
+hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd(programs.terminal .. " -e " .. tasks))
 hl.bind("SUPER + M", hl.dsp.exec_cmd(programs.terminal .. " -e youtui"))
 
 -- Web Apps
