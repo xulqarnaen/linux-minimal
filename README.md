@@ -36,20 +36,8 @@ cd linux-minimal
 sudo bash ./arch.sh
 ```
 
-The script configures UFW rules to allow LocalSend ports `53317/tcp` and `53317/udp`.
-
-#### Example Archinstall configuration
-
-Use these selections as a reference; Archinstall's menu labels can vary by version.
-
-- **Profile:** Minimal
-- **Network configuration:** NetworkManager, enabled at installation
-- **Audio:** PipeWire
-- **Bluetooth:** BlueZ, with its service enabled
-- **Power management:** install and configure the power-management option you prefer
-- **Firewall:** UFW installed, but do not enable it during Archinstall if you want the installer's final firewall state to remain under your control
-
-The Arch script installs the desktop and user applications, configures UFW rules for LocalSend on `53317/tcp` and `53317/udp`, and intentionally does **not** enable UFW. NetworkManager, BlueZ, PipeWire, power management, and UFW are not all installed by `arch.sh`, so make sure the components you want are already installed and configured before running it.
+The script configures UFW rules for LocalSend on `53317/tcp` and `53317/udp`, 
+The script assumes NetworkManager, BlueZ, PipeWire, power management, and UFW are already setup during archinstall. 
 
 ### Fedora
 
@@ -70,7 +58,7 @@ The Fedora script enables **three COPR repositories**:
 - **`leloubil/wl-clip-persist`** — provides `wl-clip-persist`, which keeps Wayland clipboard contents available after the source application exits.
 - **`atim/starship`** — provides the Starship shell prompt.
 
-It also adds the **official Brave Origin RPM repository** to install `brave-origin`. RPM Fusion Free and Nonfree repositories are installed for multimedia packages, including `libavcodec-freeworld`. These are RPM repositories, not COPR projects.
+It also adds the **official Brave Origin RPM repository** to install `brave-origin`. RPM Fusion Free and Nonfree repositories are installed for multimedia packages, including `libavcodec-freeworld`. 
 
 ## What the scripts configure
 
