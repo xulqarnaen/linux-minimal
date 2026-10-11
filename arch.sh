@@ -120,10 +120,6 @@ fi
 # 4. Official Package Installation
 # ============================================================
 
-# Archinstall already provides NetworkManager, BlueZ, PipeWire, power management,
-# UFW, the kernel, linux-firmware, GRUB, zram, NTP, and the basic system. Do not reinstall
-# those here. Packages below are the additional environment components.
-
 OFFICIAL_PACKAGES=(
     dbus
     polkit
