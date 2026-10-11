@@ -587,17 +587,6 @@ if ! run_as_user xdg-mime default brave-origin.desktop \
     echo "${YELLOW}Warning: Failed to set Brave Origin as the default browser.${ALL_OFF}"
 fi
 
-XFCE_HELPERS="$CONFIG_DIR/xfce4/helpers.rc"
-mkdir -p "$(dirname "$XFCE_HELPERS")"
-touch "$XFCE_HELPERS"
-sed -i \
-    -e '/^TerminalEmulator=/d' \
-    -e '/^WebBrowser=/d' \
-    "$XFCE_HELPERS"
-printf '%s\n' \
-    'TerminalEmulator=foot' \
-    'WebBrowser=brave-origin' >> "$XFCE_HELPERS"
-
 if ! run_as_user xdg-user-dirs-update; then
     echo "${YELLOW}Warning: Failed to update user directories.${ALL_OFF}"
 fi
