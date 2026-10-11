@@ -27,7 +27,7 @@ Both installers require internet access, a normal user account with `sudo` acces
 
 1. Install Arch using **Archinstall** with the **Minimal** profile.
 2. Configure the system components listed below during Archinstall.
-3. Boot into the install and run the script:
+3. Boot into the installed system and run the script:
 
 ```bash
 sudo pacman -S --needed git
@@ -65,7 +65,7 @@ This setup assumes NetworkManager, BlueZ, PipeWire, power management, UFW, a ker
 
 1. Boot the **Fedora Everything netinstall ISO**.
 2. During installation, select **only the networking options**.
-3. Boot into the install and run:
+3. Boot into the installed system and run:
 
 ```bash
 sudo dnf install -y git
@@ -80,9 +80,32 @@ The Fedora script uses DNF and configures the additional repositories and packag
 
 - Install required packages and repositories.
 - Set up Hyprland, Wayland portals, audio, Bluetooth, power management, greetd, Noctalia Greeter, and UWSM as appropriate for each distribution.
-- Theme almost the entire system with noctalia.
-- Deploy `.config/`,`.local/` and `Wallpapers/` into the target user's home and designated directories.
+- Theme almost the entire system with Noctalia.
+- Deploy `.config/` and `.local/` into the target user's home, and `Wallpapers/` into the user's Pictures directory.
 - Set application defaults and install JetBrains Mono Nerd Font system-wide.
+
+## Common keybindings
+
+| Keybinding | Action |
+|---|---|
+| `Super + Space` | Open launcher |
+| `Super + Enter` | Open terminal |
+| `Super + Q` | Close focused window |
+| `Super + E` | Open file manager |
+| `Super + B` | Open browser |
+| `Alt + Tab` | Cycle windows |
+| `Super + Arrow keys` | Focus window in that direction |
+| `Super + 1–0` | Switch to workspace 1–10 |
+| `Super + Shift + 1–0` | Move window to workspace 1–10 |
+| `Super + F` | Maximize focused window |
+| `Super + Shift + F` | Fullscreen focused window |
+| `Super + S` | Toggle scratchpad |
+| `Print` | Screenshot a region |
+| `Shift + Print` | Screenshot full screen |
+| `Super + Alt + Space` | Open control center |
+| `Super + Ctrl + V` | Open clipboard panel |
+| `Super + Escape` | Open session menu |
+| `Super + Ctrl + L` | Lock session |
 
 ## Repository layout
 
