@@ -25,6 +25,8 @@ Both installers require internet access, a normal user account with `sudo` acces
 
 ### Arch Linux
 
+⚠️The script assumes NetworkManager, BlueZ, PipeWire, power management, and UFW are already setup during archinstall.
+
 1. Install Arch using **Archinstall** with the **Minimal** profile.
 2. Configure the system components listed below during Archinstall.
 3. Boot into the installed system and run the script:
@@ -36,8 +38,8 @@ cd linux-minimal
 sudo bash ./arch.sh
 ```
 
-The script configures UFW rules for LocalSend on `53317/tcp` and `53317/udp`, 
-The script assumes NetworkManager, BlueZ, PipeWire, power management, and UFW are already setup during archinstall. 
+The script configures UFW rules for LocalSend on `53317/tcp` and `53317/udp`. 
+
 
 ### Fedora
 
