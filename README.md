@@ -27,12 +27,11 @@ Both installers require internet access, a normal user account with `sudo` acces
 
 ⚠️The script assumes NetworkManager, BlueZ, PipeWire, power management, and UFW are already setup during archinstall.
 
-1. Install Arch using **Archinstall** with the **Minimal** profile.
-2. Configure the system components listed below during Archinstall.
-3. Boot into the installed system and run the script:
+1. Install Arch using **Archinstall** with the **Minimal** profile with options above configured.
+2. Boot into the installed system and run the script:
 
 ```bash
-sudo pacman -S git
+sudo pacman -S --needed git
 git clone https://github.com/xulqarnaen/linux-minimal.git
 cd linux-minimal
 sudo bash ./arch.sh
