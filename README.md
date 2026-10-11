@@ -36,30 +36,13 @@ cd linux-minimal
 sudo bash ./arch.sh
 ```
 
-The script configures UFW rules to allow LocalSend ports `53317/tcp` and `53317/udp`; firewall enablement is expected to be handled by Archinstall.
+The script configures UFW rules to allow LocalSend ports `53317/tcp` and `53317/udp`.
 
 #### Example Archinstall configuration
 
 Use this as a reference, not a configuration that must be copied exactly.
 
-| Archinstall option | Example value |
-|---|---|
-| Profile | Minimal |
-| Network | NetworkManager (default backend) |
-| Kernel | `linux` |
-| Bootloader | systemd-boot |
-| Timezone | Your local timezone |
-| NTP | Enabled |
-| Pacman | Color enabled |
-| zram | Enabled, `zstd` |
-| Bluetooth | Enabled |
-| Audio | PipeWire |
-| Power management | `power-profiles-daemon` |
-| Firewall | UFW |
-| Authentication | Root password set; one regular user configured |
-| Disk layout | Archinstall default layout on the selected target drive |
-
-This setup assumes NetworkManager, BlueZ, PipeWire, power management, UFW, a kernel, firmware, a bootloader, zram, and NTP are configured during Archinstall.
+This setup assumes NetworkManager, BlueZ, PipeWire, power management, and UFW(firewall) are configured during Archinstall.
 
 ### Fedora
 
@@ -74,7 +57,7 @@ cd linux-minimal
 sudo bash ./fedora.sh
 ```
 
-The Fedora script uses DNF and configures the additional repositories and packages it needs.
+The Fedora script configures # no of COPR repositories  for Brave Origin, Starfish, Wl-Clip-Persist, Noctalia and hyprland. (write this section properly with names of the repos and what they provide)
 
 ## What the scripts configure
 
