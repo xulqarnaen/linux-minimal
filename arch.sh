@@ -136,6 +136,9 @@ OFFICIAL_PACKAGES=(
     foot
     neovim
     fastfetch
+    btop
+    ncdu
+    cava
     nwg-look
     xdg-user-dirs
     xdg-utils
@@ -154,6 +157,7 @@ OFFICIAL_PACKAGES=(
     upower
 
     gpu-screen-recorder
+    intel-media-driver
     qt6ct
     mpv
 
