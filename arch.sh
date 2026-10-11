@@ -291,12 +291,13 @@ setup_ufw() {
        ! ufw default allow outgoing >/dev/null ||
        ! ufw allow 53317/tcp >/dev/null ||
        ! ufw allow 53317/udp >/dev/null ||
-       ! ufw --force enable >/dev/null; then
+       ! ufw --force enable >/dev/null ||
+       ! systemctl enable --now ufw.service >/dev/null; then
         echo "${RED}ERROR: UFW rule configuration failed.${ALL_OFF}" >&2
         return 1
     fi
 
-    echo "UFW configured: incoming denied, outgoing allowed, LocalSend 53317/tcp and 53317/udp allowed."
+    echo "UFW enabled: incoming denied, outgoing allowed, LocalSend 53317/tcp and 53317/udp allowed."
 }
 
 if ! setup_ufw; then
