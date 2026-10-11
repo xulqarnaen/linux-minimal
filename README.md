@@ -1,6 +1,6 @@
 # linux-minimal
 
-Minimal Hyprland desktop setup for **Arch Linux** and **Fedora**, with Noctalia, UWSM, greetd, and a curated set of Wayland applications. The target installed footprint is **under 5 GiB** and **around 700MiB** RAM usage on idle.
+Minimal Hyprland desktop setup for **Arch Linux** and **Fedora**, with Noctalia, and a curated set of Wayland applications. The target installed footprint is **under 5 GiB** and **around 700MiB** RAM usage on idle.
 
 ## Components
 
@@ -112,10 +112,10 @@ The Fedora script uses DNF and configures the additional repositories and packag
 ```text
 linux-minimal/
 ├── .config/       # Desktop and application configuration
-├── .local/bin/    # User scripts and utilities
+├── .local/bin/    # User scripts for webapp setups
 ├── Wallpapers/    # Deployed to the user's Pictures directory
-├── arch.sh
-├── fedora.sh
+├── arch.sh        # Arch Linux setup script
+├── fedora.sh      # Fedora Linux setup script
 └── README.md
 ```
 
