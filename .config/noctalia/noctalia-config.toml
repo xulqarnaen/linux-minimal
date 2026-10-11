@@ -7,7 +7,7 @@ border = "secondary"
 border_width = 2.0
 center = [ "privacy", "clock" ]
 concave_edge_corners = false
-end = [ "media", "cpu", "tray", "network", "bluetooth", "volume", "brightness", "battery" ]
+end = [ "media", "tray", "network", "bluetooth", "volume", "brightness", "battery" ]
 font_family = "JetBrainsMono Nerd Font"
 hover_highlight = false
 margin_edge = 6
@@ -16,7 +16,7 @@ panel_overlap = 0
 position = "bottom"
 radius = 0
 shadow = false
-start = [ "launcher", "workspaces", "audio_visualizer", "active_window" ]
+start = [ "launcher", "workspaces", "audio_visualizer", "cpu", "network_rx" ]
 
 [battery]
 warning_threshold = 20
@@ -161,6 +161,7 @@ enabled = [ "noctalia/screen_recorder" ]
 
 [shell]
 app_icon_color = "outline"
+app_icon_colorize = true
 avatar_path = "/home/ibr/Pictures/Wallpapers/wallhaven-8g8kmo_1920x1080.png"
 button_borders = false
 card_borders = false
@@ -180,7 +181,7 @@ telemetry_enabled = true
 
     [shell.launcher]
     categories = false
-    show_icons = false
+    show_icons = true
     sort_by_usage = false
 
     [shell.panel]
@@ -253,10 +254,10 @@ vertical_format = "%I:%M %p"
 [widget.cpu]
 show_glyph = false
 stat = "ram_used"
-visualization = "none"
+visualization = "gauge"
 
 [widget.launcher]
-glyph = "brand-bumble"
+glyph = "brand-baidu"
 
 [widget.media]
 artist_first = true
@@ -266,6 +267,10 @@ title_scroll = "on_hover"
 
 [widget.network]
 show_label = false
+
+[widget.network_rx]
+network_speed_compact = true
+show_glyph = false
 
 [widget.privacy]
 hide_inactive = true
