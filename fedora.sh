@@ -186,6 +186,9 @@ PACKAGES=(
     foot
     neovim
     fastfetch
+    btop
+    ncdu
+    cava
     nwg-look
     xdg-user-dirs
     xdg-utils
