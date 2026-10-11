@@ -158,10 +158,12 @@ fi
 # ============================================================
 
 PACKAGES=(
+    # Core system services
     dbus
     polkit
     accountsservice
 
+    # Login manager, desktop session, and firewall
     greetd
     noctalia-greeter-git
     noctalia-hyprland-meta
@@ -170,55 +172,65 @@ PACKAGES=(
     bluez
     ufw
 
+    # Wayland/X11 compatibility and graphics drivers
     xdg-desktop-portal-hyprland
     xdg-desktop-portal-gtk
     xorg-x11-server-Xwayland
-
     mesa-dri-drivers
     mesa-vulkan-drivers
     intel-media-driver
 
+    # Audio services
     pipewire
     pipewire-pulseaudio
     pipewire-alsa
 
+    # Shell, terminal, editor, and system utilities
     fish
     foot
     neovim
     fastfetch
     btop
     ncdu
-    cava
-    nwg-look
+    starship
+    gum
+    curl
+
+    # XDG user directories and desktop integration
     xdg-user-dirs
     xdg-utils
     xdg-terminal-exec
 
+    # File manager and filesystem support
     nautilus
     gvfs-mtp
-
-    power-profiles-daemon
-
     unrar
     unzip
     tar
 
-    gum
-    adw-gtk3-theme
-    imv
-    evince
+    # Power management
+    power-profiles-daemon
     upower
 
-    gpu-screen-recorder
+    # Appearance and GTK/Qt configuration
+    nwg-look
+    adw-gtk3-theme
     qt6ct
+
+    # Media, graphics, and codecs
+    gpu-screen-recorder
     mpv
+    imv
+    evince
+    cava
     ffmpeg
     libavcodec-freeworld
+
+    # Browser
     brave-origin
 
+    # Clipboard persistence
     wl-clip-persist
-    starship
-    curl
 )
 
 # ============================================================
