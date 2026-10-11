@@ -535,27 +535,10 @@ set_mime_defaults() {
     run_as_user xdg-mime default "$desktop" $mimes
 }
 
-setup_nvim_desktop() {
-    local source="/usr/share/applications/nvim.desktop"
-    local applications="$ACTUAL_USER_HOME/.local/share/applications"
-    local desktop_file="$applications/nvim.desktop"
-
-    [[ -f "$source" ]] || return 1
-    run_as_user install -d -m 0755 "$applications" || return 1
-    run_as_user install -m 0644 "$source" "$desktop_file" || return 1
-    run_as_user sed -i \
-        -e 's|^Exec=.*|Exec=xdg-terminal-exec nvim %F|' \
-        -e 's|^Terminal=.*|Terminal=false|' \
-        -e '/^MimeType=/ s|;*$|;text/markdown;application/json;|' \
-        "$desktop_file" || return 1
-
-    if command -v update-desktop-database >/dev/null 2>&1; then
-        run_as_user update-desktop-database "$applications" || return 1
+if command -v update-desktop-database >/dev/null 2>&1; then
+    if ! run_as_user update-desktop-database "$ACTUAL_USER_HOME/.local/share/applications"; then
+        echo "${YELLOW}Warning: Failed to refresh the user desktop-entry database.${ALL_OFF}" >&2
     fi
-}
-
-if ! setup_nvim_desktop; then
-    echo "${YELLOW}Warning: Failed to configure Neovim to launch through the preferred terminal.${ALL_OFF}" >&2
 fi
 
 echo ""
