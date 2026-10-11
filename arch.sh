@@ -522,35 +522,19 @@ fi
 # 12. User Environment Defaults
 # ============================================================
 
-set_default_mime_types() {
-    local desktop="$1"
-    shift
-    local mime
-
-    for mime in "$@"; do
-        if ! run_as_user xdg-mime default "$desktop" "$mime"; then
-            return 1
-        fi
-    done
-}
-
 set_mime_defaults() {
     local desktop="$1"
     local pattern="$2"
     local desktop_file="$ACTUAL_USER_HOME/.local/share/applications/$desktop"
-    local -a mimes=()
+    local mimes
 
     [[ -f "$desktop_file" ]] || desktop_file="/usr/share/applications/$desktop"
     [[ -f "$desktop_file" ]] || return 1
+    mimes="$(sed -n 's/^MimeType=//p' "$desktop_file" | tr ';' '\n' | grep -E "$pattern" || true)"
+    [[ -n "$mimes" ]] || return 1
 
-    mapfile -t mimes < <(
-        sed -n 's/^MimeType=//p' "$desktop_file" |
-            tr ';' '\n' |
-            grep -E "$pattern" || true
-    )
-    (("${#mimes[@]}" > 0)) || return 1
-
-    set_default_mime_types "$desktop" "${mimes[@]}"
+    # Intentional unquoted expansion: mimes is newline-separated MIME types.
+    run_as_user xdg-mime default "$desktop" $mimes
 }
 
 setup_nvim_desktop() {
@@ -591,11 +575,11 @@ if ! set_mime_defaults mpv.desktop '^(video/|audio/)'; then
     echo "${YELLOW}Warning: Failed to set mpv as the default audio/video player.${ALL_OFF}"
 fi
 
-if ! set_default_mime_types org.gnome.Evince.desktop application/pdf; then
+if ! run_as_user xdg-mime default org.gnome.Evince.desktop application/pdf; then
     echo "${YELLOW}Warning: Failed to set Evince as the default PDF viewer.${ALL_OFF}"
 fi
 
-if ! set_default_mime_types brave-origin.desktop \
+if ! run_as_user xdg-mime default brave-origin.desktop \
     text/html \
     x-scheme-handler/http \
     x-scheme-handler/https \
@@ -609,11 +593,11 @@ if ! run_as_user xdg-user-dirs-update; then
     echo "${YELLOW}Warning: Failed to update user directories.${ALL_OFF}"
 fi
 
-if ! set_default_mime_types org.gnome.Nautilus.desktop inode/directory; then
+if ! run_as_user xdg-mime default org.gnome.Nautilus.desktop inode/directory; then
     echo "${YELLOW}Warning: Failed to set Nautilus as default for directories.${ALL_OFF}"
 fi
 
-if ! set_default_mime_types org.gnome.Nautilus.desktop application/x-gnome-saved-search; then
+if ! run_as_user xdg-mime default org.gnome.Nautilus.desktop application/x-gnome-saved-search; then
     echo "${YELLOW}Warning: Failed to set Nautilus as default for saved searches.${ALL_OFF}"
 fi
 
