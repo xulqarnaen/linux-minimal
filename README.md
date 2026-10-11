@@ -32,7 +32,7 @@ Both installers require internet access, a normal user account with `sudo` acces
 3. Boot into the installed system and run the script:
 
 ```bash
-sudo pacman -S --needed git
+sudo pacman -S git
 git clone https://github.com/xulqarnaen/linux-minimal.git
 cd linux-minimal
 sudo bash ./arch.sh
