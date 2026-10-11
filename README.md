@@ -40,9 +40,16 @@ The script configures UFW rules to allow LocalSend ports `53317/tcp` and `53317/
 
 #### Example Archinstall configuration
 
-Use this as a reference, not a configuration that must be copied exactly.
+Use these selections as a reference; Archinstall's menu labels can vary by version.
 
-This setup assumes NetworkManager, BlueZ, PipeWire, power management, and UFW(firewall) are configured during Archinstall.
+- **Profile:** Minimal
+- **Network configuration:** NetworkManager, enabled at installation
+- **Audio:** PipeWire
+- **Bluetooth:** BlueZ, with its service enabled
+- **Power management:** install and configure the power-management option you prefer
+- **Firewall:** UFW installed, but do not enable it during Archinstall if you want the installer's final firewall state to remain under your control
+
+The Arch script installs the desktop and user applications, configures UFW rules for LocalSend on `53317/tcp` and `53317/udp`, and intentionally does **not** enable UFW. NetworkManager, BlueZ, PipeWire, power management, and UFW are not all installed by `arch.sh`, so make sure the components you want are already installed and configured before running it.
 
 ### Fedora
 
@@ -57,7 +64,13 @@ cd linux-minimal
 sudo bash ./fedora.sh
 ```
 
-The Fedora script configures # no of COPR repositories  for Brave Origin, Starfish, Wl-Clip-Persist, Noctalia and hyprland. (write this section properly with names of the repos and what they provide)
+The Fedora script enables **three COPR repositories**:
+
+- **`lionheartp/Hyprland`** — provides the Hyprland-related packages used by this setup, including the Noctalia/Hyprland package source.
+- **`leloubil/wl-clip-persist`** — provides `wl-clip-persist`, which keeps Wayland clipboard contents available after the source application exits.
+- **`atim/starship`** — provides the Starship shell prompt.
+
+It also adds the **official Brave Origin RPM repository** to install `brave-origin`. RPM Fusion Free and Nonfree repositories are installed for multimedia packages, including `libavcodec-freeworld`. These are RPM repositories, not COPR projects.
 
 ## What the scripts configure
 
