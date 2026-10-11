@@ -684,25 +684,6 @@ else
     echo "${YELLOW}Warning: JetBrains Mono Nerd Font file was not found.${ALL_OFF}"
 fi
 
-for package in \
-    hyprland-uwsm noctalia-hyprland-meta uwsm greetd ufw \
-    fish foot neovim fastfetch nwg-look \
-    nautilus gvfs-mtp \
-    imv evince upower gpu-screen-recorder qt6ct mpv \
-    wl-clip-persist starship; do
-    if rpm -q "$package" >/dev/null 2>&1; then
-        echo "Package $package: installed"
-    else
-        echo "${YELLOW}Warning: Expected package $package is not installed.${ALL_OFF}"
-    fi
-done
-
-if rpm -q noctalia-greeter-git >/dev/null 2>&1; then
-    echo "Greeter package noctalia-greeter-git: installed"
-else
-    echo "${YELLOW}Warning: Expected greeter package noctalia-greeter-git is not installed.${ALL_OFF}"
-fi
-
 echo ""
 echo "${GREEN}Installation Complete.${ALL_OFF}"
 
