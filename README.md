@@ -33,7 +33,9 @@ The configuration also includes Hyprland rules, keybindings, Noctalia configurat
 | Arch Linux | `arch.sh` | Supported |
 | Fedora Linux | `fedora.sh` | Supported |
 
-The scripts are intended for **fresh or minimally configured installations** rather than existing desktop environments.
+The scripts are intended only for **fresh Archinstall installations** and **minimal Fedora installations**. They are not general-purpose migration tools and are not designed to repair or preserve an existing desktop setup.
+
+Both scripts require a working internet connection, a normal non-root user account, and the repository checked out locally. Run them from the repository root using `sudo`. They deliberately do not create backups: tracked configuration files with matching names in the target home directory may be overwritten.
 
 ## Installation
 
@@ -44,10 +46,12 @@ Install a minimal Arch system first, then clone this repository:
 ```bash
 git clone https://github.com/xulqarnaen/linux-minimal.git
 cd linux-minimal
-sudo ./arch.sh
+sudo bash ./arch.sh
 ```
 
 The Arch installer uses `pacman` for official packages and an AUR helper for packages that are not available in the official repositories.
+
+**Archinstall prerequisites:** complete a minimal Archinstall first, with a normal user account and the networking/system base you intend to keep. The installer assumes Archinstall has already configured NetworkManager, BlueZ, PipeWire, power management, UFW, the kernel, firmware, bootloader, zram, and time synchronization. It does not reinstall those items. Make sure the system can access the internet and that `git` is available to clone the repository.
 
 ### Fedora Linux
 
@@ -56,10 +60,12 @@ Install a minimal Fedora system first, then:
 ```bash
 git clone https://github.com/xulqarnaen/linux-minimal.git
 cd linux-minimal
-sudo ./fedora.sh
+sudo bash ./fedora.sh
 ```
 
-The Fedora installer uses `dnf` and configures the additional repositories required by the setup.
+The Fedora installer uses `dnf` and configures the additional repositories required by the setup. It installs its required desktop packages and UFW itself.
+
+**Fedora prerequisites:** start from a minimal Fedora installation with a working DNF environment, systemd, internet access, a normal user account with `sudo` access, and `git` available to clone the repository. The script is intended to be run from that user's session via `sudo`, not from a root login with no target user.
 
 Both installers perform environment checks before making changes and require the repository to contain the expected configuration tree.
 
