@@ -99,7 +99,7 @@ The repository's configuration is deployed into the user's home directory:
 ~/.local/
 ```
 
-The installers also configure application defaults and other desktop integration where required.
+The installers also configure application defaults and other desktop integration where required. Wallpapers are deployed to `~/Pictures/Wallpapers/` after updating the user's XDG directory configuration.
 
 ### Fonts
 
@@ -111,7 +111,7 @@ The setup installs **JetBrains Mono Nerd Font** system-wide.
 linux-minimal/
 ├── .config/          # Desktop and application configuration
 ├── .local/bin/       # User-local scripts and utilities
-├── walls/            # Wallpapers
+├── Wallpapers/       # Wallpapers deployed to ~/Pictures/Wallpapers/
 ├── arch.sh           # Arch Linux installer
 ├── fedora.sh         # Fedora Linux installer
 └── README.md
@@ -164,7 +164,7 @@ Most user-facing configuration lives under:
 ```text
 .config/
 .local/
-walls/
+Wallpapers/
 ```
 
 The installers can also be edited directly if you want to change the package set or system setup.

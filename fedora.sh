@@ -380,6 +380,15 @@ if ! systemctl set-default graphical.target; then
     exit 1
 fi
 
+run_as_user() {
+    runuser -u "$ACTUAL_USER" -- env \
+        HOME="$ACTUAL_USER_HOME" \
+        USER="$ACTUAL_USER" \
+        LOGNAME="$ACTUAL_USER" \
+        PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin" \
+        "$@"
+}
+
 # ============================================================
 # 6. Configuration & File Deployment
 # ============================================================
@@ -428,6 +437,36 @@ if [[ -d "$REPO_DIR/.local" ]]; then
         fi
     fi
 fi
+
+echo "Preparing XDG user directories and deploying wallpapers..."
+
+if ! run_as_user xdg-user-dirs-update; then
+    echo "${RED}ERROR: Failed to update user directories before wallpaper deployment.${ALL_OFF}" >&2
+    exit 1
+fi
+
+PICTURES_DIR="$(run_as_user xdg-user-dir PICTURES)"
+if [[ -z "$PICTURES_DIR" ]]; then
+    echo "${RED}ERROR: Could not determine the user's Pictures directory.${ALL_OFF}" >&2
+    exit 1
+fi
+
+if [[ ! -d "$REPO_DIR/Wallpapers" ]]; then
+    echo "${RED}ERROR: Wallpapers directory was not found in the repository.${ALL_OFF}" >&2
+    exit 1
+fi
+
+if ! run_as_user mkdir -p "$PICTURES_DIR"; then
+    echo "${RED}ERROR: Failed to create the user's Pictures directory.${ALL_OFF}" >&2
+    exit 1
+fi
+
+if ! run_as_user cp -a "$REPO_DIR/Wallpapers" "$PICTURES_DIR/"; then
+    echo "${RED}ERROR: Failed to deploy wallpapers to $PICTURES_DIR.${ALL_OFF}" >&2
+    exit 1
+fi
+
+echo "Wallpapers deployed to $PICTURES_DIR/Wallpapers."
 
 install_jetbrains_mono_nerd_font() {
     echo ""
@@ -511,15 +550,6 @@ fi
 # User Environment Defaults
 # ============================================================
 
-run_as_user() {
-    runuser -u "$ACTUAL_USER" -- env \
-        HOME="$ACTUAL_USER_HOME" \
-        USER="$ACTUAL_USER" \
-        LOGNAME="$ACTUAL_USER" \
-        PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin" \
-        "$@"
-}
-
 set_mime_defaults() {
     local desktop="$1"
     local pattern="$2"
@@ -568,10 +598,6 @@ if ! run_as_user xdg-mime default brave-origin.desktop \
     x-scheme-handler/unknown \
     x-scheme-handler/chromium; then
     echo "${YELLOW}Warning: Failed to set Brave Origin as the default browser.${ALL_OFF}"
-fi
-
-if ! run_as_user xdg-user-dirs-update; then
-    echo "${YELLOW}Warning: Failed to update user directories.${ALL_OFF}"
 fi
 
 if ! run_as_user xdg-mime default org.gnome.Nautilus.desktop inode/directory; then
