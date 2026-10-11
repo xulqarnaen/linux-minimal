@@ -209,10 +209,6 @@ wallpaper_scheme = "m3-content"
     builtin_ids = [ "btop", "cava", "foot", "gtk3", "gtk4", "hyprland", "kcolorscheme", "qt", "starship" ]
     community_ids = [ "telegram", "neovim" ]
 
-        [theme.templates.user.nvim_base16]
-        input_path = "~/.config/nvim/lua/matugen-template.lua"
-        output_path = "~/.config/nvim/lua/matugen.lua"
-        post_hook = "pkill -SIGUSR1 nvim"
 
 [wallpaper]
 directory = "~/Pictures/Wallpapers"
