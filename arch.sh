@@ -193,47 +193,47 @@ install_yay() {
         return 0
     fi
 
-    echo "Installing AUR build prerequisites..."
-    if ! pacman -S --needed --noconfirm base-devel git go; then
-        echo "${RED}ERROR: Failed to install yay build prerequisites.${ALL_OFF}" >&2
+    echo "Installing yay-bin build prerequisites..."
+    if ! pacman -S --needed --noconfirm base-devel git; then
+        echo "${RED}ERROR: Failed to install yay-bin build prerequisites.${ALL_OFF}" >&2
         return 1
     fi
 
     local build_dir
     local -a yay_packages
 
-    build_dir="$(mktemp -d /tmp/yay-build.XXXXXX)"
+    build_dir="$(mktemp -d /tmp/yay-bin-build.XXXXXX)"
     chown "$ACTUAL_USER:$ACTUAL_USER_GROUP" "$build_dir"
 
-    echo "Building yay as user '$ACTUAL_USER'..."
-    if ! run_as_user git clone --depth=1 https://aur.archlinux.org/yay.git "$build_dir/yay"; then
+    echo "Preparing the yay-bin release package as user '$ACTUAL_USER'..."
+    if ! run_as_user git clone --depth=1 https://aur.archlinux.org/yay-bin.git "$build_dir/yay-bin"; then
         rm -rf "$build_dir"
-        echo "${RED}ERROR: Failed to clone yay.${ALL_OFF}" >&2
+        echo "${RED}ERROR: Failed to clone yay-bin.${ALL_OFF}" >&2
         return 1
     fi
 
-    if ! run_as_user bash -c "cd \"$build_dir/yay\" && makepkg -f --noconfirm"; then
+    if ! run_as_user bash -c "cd \"$build_dir/yay-bin\" && makepkg -f --noconfirm"; then
         rm -rf "$build_dir"
-        echo "${RED}ERROR: Failed to build yay.${ALL_OFF}" >&2
+        echo "${RED}ERROR: Failed to prepare the yay-bin package.${ALL_OFF}" >&2
         return 1
     fi
 
-    mapfile -t yay_packages < <(find "$build_dir/yay" -maxdepth 1 -type f -name 'yay-[0-9]*.pkg.tar.zst' -print)
+    mapfile -t yay_packages < <(find "$build_dir/yay-bin" -maxdepth 1 -type f -name 'yay-bin-[0-9]*.pkg.tar.zst' -print)
 
-    if ((${#yay_packages[@]} == 0)); then
+    if (("${#yay_packages[@]}" == 0)); then
         rm -rf "$build_dir"
-        echo "${RED}ERROR: yay package was not produced.${ALL_OFF}" >&2
+        echo "${RED}ERROR: yay-bin package was not produced.${ALL_OFF}" >&2
         return 1
     fi
 
     if ! pacman -U --noconfirm "${yay_packages[@]}"; then
         rm -rf "$build_dir"
-        echo "${RED}ERROR: Failed to install the built yay package.${ALL_OFF}" >&2
+        echo "${RED}ERROR: Failed to install yay-bin.${ALL_OFF}" >&2
         return 1
     fi
 
     rm -rf "$build_dir"
-    echo "yay installed successfully."
+    echo "yay-bin installed successfully."
 }
 
 if ! install_yay; then
