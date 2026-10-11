@@ -121,10 +121,12 @@ fi
 # ============================================================
 
 OFFICIAL_PACKAGES=(
+    # Core system services
     dbus
     polkit
     accountsservice
 
+    # Login manager and desktop session
     greetd
     noctalia
     uwsm
@@ -132,38 +134,44 @@ OFFICIAL_PACKAGES=(
     xdg-desktop-portal-hyprland
     xdg-desktop-portal-gtk
 
+    # Shell, terminal, editor, and system utilities
     fish
     foot
     neovim
     fastfetch
     btop
     ncdu
-    cava
-    nwg-look
+    starship
+    gum
+    curl
+
+    # XDG user directories and desktop integration
     xdg-user-dirs
     xdg-utils
     xdg-terminal-exec
 
+    # File manager and filesystem support
     nautilus
     gvfs-mtp
-
     unrar
     unzip
 
-    gum
+    # Appearance and GTK/Qt configuration
+    nwg-look
     adw-gtk-theme
-    imv
-    evince
-    upower
+    qt6ct
 
+    # Media, graphics, and hardware acceleration
     gpu-screen-recorder
     intel-media-driver
-    qt6ct
     mpv
+    imv
+    evince
+    cava
+    upower
 
+    # Clipboard persistence
     wl-clip-persist
-    starship
-    curl
 )
 
 echo ""
