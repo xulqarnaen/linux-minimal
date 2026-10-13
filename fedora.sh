@@ -221,7 +221,7 @@ PACKAGES=(
     gpu-screen-recorder
     mpv
     imv
-    evince
+    papers
     cava
     ffmpeg
     libavcodec-freeworld
@@ -601,8 +601,8 @@ if ! set_mime_defaults mpv.desktop '^(video/|audio/)'; then
     echo "${YELLOW}Warning: Failed to set mpv as the default audio/video player.${ALL_OFF}"
 fi
 
-if ! run_as_user xdg-mime default org.gnome.Evince.desktop application/pdf; then
-    echo "${YELLOW}Warning: Failed to set Evince as the default PDF viewer.${ALL_OFF}"
+if ! run_as_user xdg-mime default org.gnome.Papers.desktop application/pdf; then
+    echo "${YELLOW}Warning: Failed to set Papers as the default PDF viewer.${ALL_OFF}"
 fi
 
 if ! run_as_user xdg-mime default brave-origin.desktop \
