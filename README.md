@@ -10,7 +10,7 @@ Minimal Hyprland desktop setup for **Arch Linux** and **Fedora**, with Noctalia,
 | Login | greetd, Noctalia Greeter |
 | Shell and terminal | Fish, Foot, Starship |
 | Browser and files | Brave Origin, Nautilus |
-| Editor and media | Neovim, mpv, imv, Evince |
+| Editor and media | Neovim, mpv, imv, Papers |
 | Capture and clipboard | GPU Screen Recorder, wl-clip-persist |
 | Font | JetBrains Mono Nerd Font |
 | Firewall | UFW |
