@@ -43,7 +43,7 @@ The script configures UFW rules for LocalSend on `53317/tcp` and `53317/udp`.
 ### Fedora
 
 1. Boot the **Fedora Everything netinstall ISO**.
-2. During installation, select **only the networking options**.
+2. During installation, select **only the networking options (or skip that aswell if you want to configure it manually)**.
 3. Boot into the installed system and run:
 
 ```bash
