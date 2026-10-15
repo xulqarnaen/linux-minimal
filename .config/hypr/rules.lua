@@ -26,3 +26,4 @@ hl.window_rule({
     float = true,
     center = true,
 })
+

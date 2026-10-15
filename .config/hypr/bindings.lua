@@ -4,13 +4,14 @@ local browser = "brave-origin"
 local ipc = "noctalia msg "
 local webapp = "webapp"
 local tasks = "btop"
-
+local share = "localsend" 
 -- Applications
 hl.bind("SUPER + Return", hl.dsp.exec_cmd(terminal))
 hl.bind("SUPER + B", hl.dsp.exec_cmd(browser))
 hl.bind("SUPER + E", hl.dsp.exec_cmd(fileManager .. " --new-window"))
 hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd(terminal .. " -e " .. tasks))
 hl.bind("SUPER + M", hl.dsp.exec_cmd(terminal .. " -e youtui"))
+hl.bind("SUPER + ALT + S", hl.dsp.exec_cmd(share))
 
 -- Web Apps
 hl.bind("SUPER + A", hl.dsp.exec_cmd(webapp .. " https://chatgpt.com"))

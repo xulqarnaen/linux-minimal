@@ -10,24 +10,27 @@ hl.config({
     },
 
     ---- Decoration ----
-    decoration = {
-        rounding = 0,
-        active_opacity = 1.0,
-        inactive_opacity = 1.0,
-     -- dim_inactive = true,
-     -- dim_strength = 0.15,
+decoration = {
+    rounding = 0,
+    active_opacity = 0.75,
+    inactive_opacity = 0.60,
 
-        shadow = {
-            enabled = false,
-            range = 4,
-            render_power = 3,
-            color = 0xee1a1a1a,
-        },
-
-        blur = {
-            enabled = false,
-        },
+    shadow = {
+        enabled = false,
+        range = 4,
+        render_power = 3,
+        color = 0xee1a1a1a,
     },
+
+    blur = {
+        enabled = true,
+        size = 6,
+        passes = 2,
+        new_optimizations = true,
+        xray = false,
+	popups = true,
+    },
+},
 
     ---- Layouts ----
     dwindle = {
@@ -75,3 +78,7 @@ hl.animation({ leaf = "layersOut", enabled = animations, speed = 1.5, bezier = "
 hl.animation({ leaf = "fadeLayersIn", enabled = animations, speed = 1.79, bezier = "almostLinear" })
 hl.animation({ leaf = "fadeLayersOut", enabled = animations, speed = 1.39, bezier = "almostLinear" })
 hl.animation({ leaf = "workspaces", enabled = animations, speed = 1, bezier = "easeOutQuint" })
+
+hl.animation({ leaf = "specialWorkspace", enabled = animations, speed = 3.79, bezier = "easeOutQuint" })
+hl.animation({ leaf = "specialWorkspaceIn", enabled = animations, speed = 4.1, bezier = "easeOutQuint", style = "slidevert 50%" })
+hl.animation({ leaf = "specialWorkspaceOut", enabled = animations, speed = 1.49, bezier = "linear", style = "slidevert 50%" })
