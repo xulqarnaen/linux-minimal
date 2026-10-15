@@ -3,9 +3,8 @@ enable_overdrive = false
 enable_sounds = true
 
 [bar.default]
-background_opacity = 0.4999999888241291
 border = "primary"
-border_width = 2.0
+border_width = 3.0
 capsule_fill = "on_primary"
 capsule_opacity = 0.4999999888241291
 capsule_radius = 0
@@ -50,7 +49,7 @@ sidebar_section = "none"
 enabled = false
 
 [dock]
-background_opacity = 0.4999999888241291
+background_opacity = 0.99999997764825821
 border = "primary"
 border_width = 2.0
 concave_edge_corners = false
@@ -66,14 +65,14 @@ main_axis_padding = 0
 margin_edge = 6
 pinned = [
     "foot",
-    "org.gnome.Evince",
     "org.gnome.Nautilus",
     "brave-origin",
     "Photos",
     "org.telegram.desktop",
     "YouTube Music",
     "Calendar",
-    "ChatGPT"
+    "ChatGPT",
+    "org.gnome.Papers"
 ]
 position = "bottom"
 radius = 0
@@ -145,17 +144,20 @@ widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-widget-00000000000000
         show_when_idle = true
 
 [notification]
-background_opacity = 0.4999999888241291
+background_opacity = 0.99999997764825821
 border = false
 
 [osd]
-background_opacity = 0.4999999888241291
+background_opacity = 0.99999997764825821
 
 [plugin_settings."noctalia/screen_recorder"]
 copy_to_clipboard = true
 
+[plugin_settings."notfinaldev/web-search"]
+provider = "duckduckgo"
+
 [plugins]
-enabled = [ "noctalia/screen_recorder" ]
+enabled = [ "noctalia/screen_recorder", "notfinaldev/web-search" ]
 
     [[plugins.source]]
     kind = "git"
@@ -170,7 +172,7 @@ enabled = [ "noctalia/screen_recorder" ]
 [shell]
 app_icon_color = "outline"
 app_icon_colorize = false
-avatar_path = "/home/ibr/Pictures/Wallpapers/flowers.png"
+avatar_path = "/home/ibr/Pictures/Wallpapers/Avdtctlr.png"
 button_borders = false
 card_borders = false
 clipboard_auto_paste = "ctrl_v"
@@ -182,7 +184,6 @@ polkit_agent = true
 popup_borders = false
 popup_shadows = true
 screen_time_enabled = true
-settings_window_translucent = true
 telemetry_enabled = true
 
     [shell.animation]
@@ -191,7 +192,7 @@ telemetry_enabled = true
     [shell.launcher]
     categories = false
     show_app_origin_indicator = false
-    show_icons = false
+    show_icons = true
     sort_by_usage = false
 
     [shell.panel]
@@ -203,12 +204,14 @@ telemetry_enabled = true
     open_near_click_control_center = true
     open_near_click_launcher = true
     session_placement = "floating"
-    transparency_mode = "glass"
     wallpaper_placement = "floating"
     wallpaper_position = "bottom_center"
 
     [shell.screenshot]
     directory = "~/Pictures/Screenshots"
+
+    [shell.shadow]
+    alpha = 0.4999999888241291
 
 [theme]
 builtin = "Catppuccin"
@@ -229,7 +232,6 @@ wallpaper_scheme = "vibrant"
 
 [wallpaper]
 directory = "~/Pictures/Wallpapers"
-fill_mode = "stretch"
 
     [wallpaper.default]
     path = "/home/ibr/Pictures/Wallpapers/flowers.png"
@@ -241,10 +243,37 @@ fill_mode = "stretch"
     path = "/home/ibr/Pictures/Wallpapers/flowers.png"
 
     [[wallpaper.favorite]]
-    community_palette = "Cyberpunk"
-    palette_source = "community"
-    path = "/home/ibr/Pictures/Wallpapers/wallhaven-8g8kmo_1920x1080.png"
-    theme_mode = "light"
+    path = "/home/ibr/Pictures/Wallpapers/qs-niri.jpg"
+
+    [[wallpaper.favorite]]
+    path = "/home/ibr/Pictures/Wallpapers/cybergunk_scaled.png"
+
+    [[wallpaper.favorite]]
+    path = "/home/ibr/Pictures/Wallpapers/flowers.png"
+
+    [[wallpaper.favorite]]
+    path = "/home/ibr/Pictures/Wallpapers/gas_station_scale.png"
+
+    [[wallpaper.favorite]]
+    path = "/home/ibr/Pictures/Wallpapers/really_liked_this.jpg"
+
+    [[wallpaper.favorite]]
+    path = "/home/ibr/Pictures/Wallpapers/wallhaven-83qxl2_1920x1080.png"
+
+    [[wallpaper.favorite]]
+    path = "/home/ibr/Pictures/Wallpapers/wallhaven-gwq1w3.png"
+
+    [[wallpaper.favorite]]
+    path = "/home/ibr/Pictures/Wallpapers/Avdtctlr.png"
+
+    [[wallpaper.favorite]]
+    path = "/home/ibr/Pictures/Wallpapers/3-akane.jpg"
+
+    [[wallpaper.favorite]]
+    path = "/home/ibr/Pictures/Wallpapers/wallhaven-dpv2qg_1920x1080.png"
+
+    [[wallpaper.favorite]]
+    path = "/home/ibr/Pictures/Wallpapers/bog.jpeg"
 
 [widget.active_window]
 capsule_fill = "tertiary"
