@@ -1,0 +1,8 @@
+@import url("libadwaita.css");
+@import url("libadwaita-tweaks.css");
+@import url("noctalia.css");
+
+* {
+    background-image: none;
+    border-radius: 0;
+}

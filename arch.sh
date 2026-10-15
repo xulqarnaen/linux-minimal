@@ -164,6 +164,7 @@ OFFICIAL_PACKAGES=(
     # Media, graphics, and hardware acceleration
     gpu-screen-recorder
     intel-media-driver
+    vulkan-intel
     mpv
     imv
     papers

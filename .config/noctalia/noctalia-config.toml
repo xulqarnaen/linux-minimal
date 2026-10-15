@@ -3,20 +3,25 @@ enable_overdrive = false
 enable_sounds = true
 
 [bar.default]
-border = "secondary"
+background_opacity = 0.4999999888241291
+border = "primary"
 border_width = 2.0
-center = [ "privacy", "clock" ]
+capsule_fill = "on_primary"
+capsule_opacity = 0.4999999888241291
+capsule_radius = 0
+center = [ "clock", "active_window" ]
+color = "primary"
 concave_edge_corners = false
-end = [ "media", "tray", "network", "bluetooth", "volume", "brightness", "battery" ]
+end = [ "privacy", "tray", "network", "bluetooth", "volume", "brightness", "battery" ]
 font_family = "JetBrainsMono Nerd Font"
 hover_highlight = false
 margin_edge = 6
 margin_ends = 6
 panel_overlap = 0
-position = "bottom"
+position = "top"
 radius = 0
 shadow = false
-start = [ "launcher", "workspaces", "audio_visualizer", "cpu", "network_rx" ]
+start = [ "launcher", "workspaces", "audio_visualizer", "media", "sysmon" ]
 
 [battery]
 warning_threshold = 20
@@ -45,8 +50,8 @@ sidebar_section = "none"
 enabled = false
 
 [dock]
-background_opacity = 0.99999997764825821
-border = "secondary"
+background_opacity = 0.4999999888241291
+border = "primary"
 border_width = 2.0
 concave_edge_corners = false
 cross_axis_padding = 5
@@ -67,19 +72,22 @@ pinned = [
     "Photos",
     "org.telegram.desktop",
     "YouTube Music",
-    "Calendar"
+    "Calendar",
+    "ChatGPT"
 ]
-position = "right"
+position = "bottom"
 radius = 0
+reserve_space = false
 shadow = false
 show_dots = true
+smart_auto_hide = true
 
 [location]
 address = "Srinagar"
 
 [lockscreen]
 blur_intensity = 0.0
-fingerprint = false
+fingerprint = true
 tint_intensity = 0.0
 transition = []
 
@@ -137,10 +145,11 @@ widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-widget-00000000000000
         show_when_idle = true
 
 [notification]
-background_opacity = 0.99999997764825821
+background_opacity = 0.4999999888241291
+border = false
 
 [osd]
-background_opacity = 0.99999997764825821
+background_opacity = 0.4999999888241291
 
 [plugin_settings."noctalia/screen_recorder"]
 copy_to_clipboard = true
@@ -154,15 +163,14 @@ enabled = [ "noctalia/screen_recorder" ]
     name = "official"
 
     [[plugins.source]]
-    enabled = false
     kind = "git"
     location = "https://github.com/noctalia-dev/community-plugins"
     name = "community"
 
 [shell]
 app_icon_color = "outline"
-app_icon_colorize = true
-avatar_path = "/home/ibr/Pictures/Wallpapers/wallhaven-8g8kmo_1920x1080.png"
+app_icon_colorize = false
+avatar_path = "/home/ibr/Pictures/Wallpapers/flowers.png"
 button_borders = false
 card_borders = false
 clipboard_auto_paste = "ctrl_v"
@@ -172,8 +180,9 @@ input_borders = false
 password_style = "random"
 polkit_agent = true
 popup_borders = false
-popup_shadows = false
+popup_shadows = true
 screen_time_enabled = true
+settings_window_translucent = true
 telemetry_enabled = true
 
     [shell.animation]
@@ -181,7 +190,8 @@ telemetry_enabled = true
 
     [shell.launcher]
     categories = false
-    show_icons = true
+    show_app_origin_indicator = false
+    show_icons = false
     sort_by_usage = false
 
     [shell.panel]
@@ -191,42 +201,50 @@ telemetry_enabled = true
     control_center_placement = "floating"
     open_near_click_clipboard = false
     open_near_click_control_center = true
+    open_near_click_launcher = true
     session_placement = "floating"
+    transparency_mode = "glass"
     wallpaper_placement = "floating"
+    wallpaper_position = "bottom_center"
 
     [shell.screenshot]
     directory = "~/Pictures/Screenshots"
 
 [theme]
-builtin = "Gruvbox"
+builtin = "Catppuccin"
 community_palette = "Cyberpunk"
 custom_palette = "solitude2"
 mode = "dark"
-source = "community"
-wallpaper_scheme = "m3-content"
+source = "custom"
+wallpaper_scheme = "vibrant"
 
     [theme.templates]
     builtin_ids = [ "btop", "cava", "foot", "gtk3", "gtk4", "hyprland", "kcolorscheme", "qt", "starship" ]
     community_ids = [ "telegram", "neovim" ]
 
+        [theme.templates.user.nvim_base16]
+        input_path = "~/.config/nvim/lua/matugen-template.lua"
+        output_path = "~/.config/nvim/lua/matugen.lua"
+        post_hook = "pkill -SIGUSR1 nvim"
 
 [wallpaper]
 directory = "~/Pictures/Wallpapers"
+fill_mode = "stretch"
 
     [wallpaper.default]
-    path = "/home/ibr/Pictures/Wallpapers/wallhaven-8g8kmo_1920x1080.png"
+    path = "/home/ibr/Pictures/Wallpapers/flowers.png"
 
     [wallpaper.last]
-    path = "/home/ibr/Pictures/Wallpapers/wallhaven-8g8kmo_1920x1080.png"
+    path = "/home/ibr/Pictures/Wallpapers/flowers.png"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/ibr/Pictures/Wallpapers/wallhaven-8g8kmo_1920x1080.png"
+    path = "/home/ibr/Pictures/Wallpapers/flowers.png"
 
     [[wallpaper.favorite]]
     community_palette = "Cyberpunk"
     palette_source = "community"
     path = "/home/ibr/Pictures/Wallpapers/wallhaven-8g8kmo_1920x1080.png"
-    theme_mode = "dark"
+    theme_mode = "light"
 
 [widget.active_window]
 capsule_fill = "tertiary"
@@ -244,6 +262,7 @@ show_label = false
 show_label = false
 
 [widget.clock]
+enabled = false
 format = "%I:%M %p - %A, %B %d"
 vertical_format = "%I:%M %p"
 
@@ -274,8 +293,17 @@ hide_inactive = true
 [widget.session]
 anchor = true
 
+[widget.sysmon]
+capsule_fill = "tertiary"
+enabled = false
+show_glyph = false
+stat = "ram_used"
+visualization = "none"
+
 [widget.volume]
 show_label = false
 
 [widget.workspaces]
+active_pill_size = 1.0
+capsule_fill = "on_primary"
 style = "minimal"
