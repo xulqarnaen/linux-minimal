@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=PW
+Comment=PW
+Exec=webapp "https://www.pw.live/study-v2/study"
+Terminal=false
+Type=Application
+Icon=pw
+StartupNotify=true
+X-WebApp=true
